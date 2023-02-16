@@ -1,0 +1,99 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hospital Discharge</title>
+    <link rel="stylesheet" href="style.css" media="all" />
+</head>
+<body>
+    <div>
+        <div id="grid-header">
+            <img class="logo" src="HospitalLogo.png" />
+            <h2>{{header_name}}</h2>
+            <div style="font-size: 14px; margin-left: 300px">
+                <div>{{hospital_address.street}}</div>
+                <div>{{hospital_address.place}}</div>
+                <div>{{hospital_address.phone}}</div>
+                <div>{{hospital_address.email}}</div>
+            </div>
+        </div>
+    </div>
+    <hr size="1" width="95%" color="gray">
+    <h3>DISCHARGE SUMMARY</h3>
+    <hr size="1" width="95%" color="gray">
+    <div class="margins">
+        <div id="grid-items">
+            <div class="grid-bold">Patient UID</div>
+            <div class="grid-bold">:</div>
+            <div class="grid-bold">{{parties_details.uid}}</div>
+            <div class="grid-bold">Admission No</div>
+            <div class="grid-bold">:</div>
+            <div class="grid-bold">{{admission_details.admissionno}}</div>
+            <div class="grid-normal">Name</div>
+            <div class="grid-bold">:</div>
+            <div class="grid-normal">{{parties_details.name}}</div>
+            <div class="grid-normal">Admission Date</div>
+            <div class="grid-bold">:</div>
+            <div class="grid-normal">{{admission_details.admissiondate}}</div>
+            <div class="grid-normal">Age</div>
+            <div class="grid-bold">:</div>
+            <div class="grid-normal">{{parties_details.age}}</div>
+            <div class="grid-normal">Discharge Date</div>
+            <div class="grid-bold">:</div>
+            <div class="grid-normal">{{admission_details.dischrgedate}}</div>
+            <div class="grid-normal">Address</div>
+            <div class="grid-bold">:</div>
+            <div class="grid-normal">{{parties_details.address}}</div>
+        </div>
+        <div class="space">
+            <div id="grid-body">
+                <div class="grid-bold">Primary treating consultant’s details:</div>
+                <div class="grid-bold">Discharge status:</div>
+                <div class="grid-normal">{{consultant_details.name}}</div>
+                <div class="grid-normal">{{consultant_details.status}}</div>
+            </div>
+            <div class="grid-normal">Speciality : {{consultant_details.speciality}}</div>
+        </div>
+    </div>
+    <hr size="1" width="95%" color="gray">
+    <div class="space">
+        <div class="margins">
+            <div class="grid-bold">Final diagnosis at the time of admission:</div>
+            <div class="grid-normal">{{final_diagnosis.diagnosis}}</div>
+            <div class="grid-bold">Key findings, on physical examination at the time of admission:</div>
+            <div class="grid-normal">BP(mmHg) : {{physical_examination.bp}},Pulse(/min) : {{physical_examination.pulse}} </div>
+            <div class="grid-bold">General appearance:</div>
+                <div class="grid-normal">
+                    Head/Eyes/Nose/Throat/Neck, Heart, Chest/Lung, Abdomen, Skin, Extreminities/Spine and
+                    Neurological examination:{{final_diagnosis.pain}}
+                </div>
+        </div>
+    </div>
+    <hr size="1" width="95%" color="gray">
+    <div class="space">
+        <div class="margins">
+            <div class="grid-bold">Summary of the key investigations during hospitalization:</div>
+            <div class="grid-normal">{{discharge_details.investigations}}</div>
+            <div class="grid-bold">Discharge medication:</div>
+            <div class="grid-normal">{{discharge_details.medication}}</div>
+            <div class="grid-bold">Discharge instructions:</div>
+            <div class="grid-normal">{{discharge_details.instructions}}</div>
+            <div class="grid-bold">Patient/Attendant:</div>
+            <div class="grid-normal">{{discharge_details.patient}}</div>
+        </div>
+    </div>
+    <div class="space">
+        <div class="rightview">Name :{{signature_details.name}}</div>
+        <hr size="1" width="70" style="margin-right:60px" color="black">
+        <div></div>
+        <div class="rightviews">Signature :<img src="Signature.png" width="60" height="25"></div>
+        <hr size="1" width="70" style="margin-right:60px" color="black">
+    </div>
+    <br/><br/>
+        <div id="footer">
+            <div class="footer-columns">
+                <p>Page 1 of 1</p>
+            </div>
+        </div>
+
+</body>
+</html>

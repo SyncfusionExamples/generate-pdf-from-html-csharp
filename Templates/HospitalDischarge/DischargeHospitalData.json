@@ -1,0 +1,48 @@
+{
+  "HeaderName": "JAMES HOSPITAL",
+
+  "HospitalAddress": {
+    "Street": "123 Dokato,St Church",
+    "Place": "New York, NY 182916",
+    "Phone": "456-6780-21",
+    "Email": "jameshospital.com"
+  },
+
+  "PartiesDetails": {
+    "Uid":"58",
+    "Name": "Laura Hase",
+    "Age": "40",
+    "Address": "New York, NY 1823467"
+  },
+  "AdmissionDetails": {
+    "Admissionno": "1221000",
+    "Admissiondate": "09-January-22,1:30 PM",
+    "Dischrgedate": "26-January-22,4:30 PM"
+  },
+  "ConsultantDetails": {
+    "Name": "Dr. John Mc",
+    "Speciality": "Orthopedic practitioner",
+    "Status": "Discharged"
+  },
+  "FinalDiagnosis":
+  {
+"Diagnosis":"Wrist fracture",
+"Pain":"NAD"
+  },
+  "PhysicalExamination":
+  {
+    "Bp":"122-80",
+    "Pulse":"72"
+  },
+ 
+  "DischargeDetails": {
+    "Investigations": "Hemogram, X-Ray.",
+    "Medication": "Acetaminophen and Cephalosporins.",
+    "Instructions": "Physical therapy, regular diet and follow up in two-three weeks with regular physician.",
+    "Patient": "I have understood the instructions given about the medication dosage and discharge."
+  },
+  "SignatureDetails": {
+    "Name": "Robson John",
+    "Signature": "Sign Here"
+  }
+}

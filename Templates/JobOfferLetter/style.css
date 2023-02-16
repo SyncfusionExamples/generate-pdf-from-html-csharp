@@ -1,0 +1,48 @@
+@font-face {
+    font-family: "OpenSans";
+    src: url("OpenSans-Regular.ttf");
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 60px auto auto;
+    padding: 10px;
+    background-color: darkblue;
+    font-size: 25px;
+    text-align: left;
+    font-family: OpenSans;
+    color: white;
+    height: 170px;
+}
+
+.body-content {
+    font-size: 16px;
+    font-family: OpenSans;
+    padding: 20px;
+    padding-right: 2.5rem;
+    text-align: left;
+}
+
+.logo {
+    margin-top: 50px;
+}
+
+#footer {
+    font-size: 12px;
+    font-family: OpenSans;
+    text-align: left;
+    font-weight: 500;
+    color: white;
+    margin-top: 0.5rem;
+    bottom: 0.5rem;
+    position: absolute;
+    width: 100%;
+    background-color: darkblue;
+}
+
+.footer-columns {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1.5rem;
+    padding-right: 2.5rem;
+}
