@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Patient Medical Record</title>
+    <link rel="stylesheet" href="style.css" media="all" />
+</head>
+<body>
+    <div>
+        <div id="grid-header">
+            <img class="logo" src="Logo.png" />
+        </div>
+    </div>
+    <div class="space">
+        <div class="margins">
+            <div id="grid-items">
+                <div class="top"></div>
+                <div class="grid-normal"></div>
+                <div class="grid-normal"><b>Patient information</b></div>
+                <div class="grid-bold">Birth Date:</div>
+                <div class="grid-normal" style="margin-bottom:8px"><b>Name &nbsp &nbsp &nbsp:</b> {{patient_information.name}}</div>
+                <div class="grid-normal">{{patient_information.birthdate}}</div>
+                <div class="grid-normal" style="margin-bottom:8px"><b>Phone &nbsp &nbsp &nbsp:</b> {{patient_information.phoneno}}</div>
+                <div class="grid-bold"></div>
+                <div class="grid-normal" ><b>Address&nbsp &nbsp:</b> {{patient_address.street}}</div>
+                <div class="grid-bold">Weight:</div>
+                <div class="grid-normal" style="margin-top:-3px">{{patient_address.place}}</div>
+                <div class="grid-normal">{{patient_information.weight}}</div>
+                <div class="grid-normal">{{patient_address.city}}</div>
+                <div class="grid-normal"></div>
+                <div class="grid-normal"></div>
+                <div class="grid-bold">Height:</div>
+                <div class="grid-normal"></div>
+                <div class="grid-normal">{{patient_information.height}}</div>
+                <div class="top"></div>
+            </div>
+        </div>
+    </div>
+    <div class="space">
+        <h3>In Case of Emergency</h3>
+        <hr size="1" width="96%" color="green">
+    </div>
+    <div class="space">
+        <div id="grid-body">
+            <div class="grid-bold">Full Name</div>
+            <div class="grid-bold">Address</div>
+            <div class="grid-normal">{{emergency.fullname}}</div>
+            <div class="grid-normal">{{hospital_address.street}}</div>
+            <div class="grid-bold"></div>
+            <div class="grid-normal">{{hospital_address.place}}</div>
+            <div class="grid-bold"></div>
+            <div class="grid-normal">{{hospital_address.city}}</div>
+            <div class="grid-bold">Number</div>
+            <div class="grid-bold"></div>
+            <div class="grid-normal">{{emergency.number}}</div>
+        </div>
+    </div>
+    <div class="space">
+        <h3>Medical Information</h3>
+        <hr size="1" width="96%" color="green">
+    </div>
+    <div class="space">
+        <div id="grid-body">
+            <div class="grid-bold">Name of physician or clinic/hospital</div>
+            <div class="grid-bold">Phone Number</div>
+            <div class="grid-normal">{{medical_information.clinicorhospital}}</div>
+            <div class="grid-normal">{{medical_information.phoneno}}</div>
+            <div class="grid-bold"></div>
+            <div class="grid-bold" style="margin-bottom:10px"></div>
+            <div class="grid-bold" >Is the camp up-to-date on all immunizations?</div>
+            <div class="grid-bold">Address</div>
+            <div class="grid-normal">{{medical_information.camp}}</div>
+            <div class="grid-normal">{{medical_address.street}}</div>
+            <div class="grid-bold"></div>
+            <div class="grid-normal">{{medical_address.place}}</div>
+            <div class="grid-bold"></div>
+        </div>
+        <div class="margins">
+            <div class="grid-bold">List any medical problems (asthma, seizures, etc.)</div>
+            <div class="grid-normal">{{medical_information.problems}}</div>
+        </div>
+        <div class="space">
+            <div id="grid-body">
+                <div class="grid-bold">If any medical insurance</div>
+                <div class="grid-bold">Policy number</div>
+                <div class="grid-normal">{{medical_information.medicalinsurance}}</div>
+                <div class="grid-normal">{{medical_information.policyno}}</div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="footer-columns">
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+@font-face {
+    font-family: phagspa;
+    src: url(phagspa.ttf);
+}
+
+#footer {
+    text-align: right;
+    font-weight: 500;
+    margin-top: 3.5rem;
+    bottom: 3.5rem;
+    width: 100%;
+    background-color: green;
+    height: 18px;
+}
+
+.footer-columns {
+    justify-content: space-between;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
+body {
+    position: relative;
+    font-family: phagspa;
+    font-size: 12px;
+}
+
+h3 {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    margin-left: 20px;
+}
+
+.margins {
+    margin-left: 20px;
+}
+
+.space {
+    margin-top: 29px;
+}
+.top {
+    margin-top: 20px;
+}
+
+#grid-header {
+    padding: 10px;
+    font-size: 20px;
+    width: 50px;
+}
+
+.logo {
+    width: 400px;
+    height: 55px;
+    margin-left: 10px;
+    margin-top: 12px;
+    margin-bottom: 10px;
+}
+
+#grid-body {
+    display: grid;
+    grid-template-columns: 400px auto;
+    margin-left: 20px;
+    
+}
+
+#grid-items {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: whitesmoke;
+}
+
+.grid-bold {
+    padding: 3px;
+    font-size: 17px;
+    font-weight: bold;
+    margin-left: 22px;
+}
+
+.grid-normal {
+    padding: 1px;
+    font-size: 17px;
+    margin-left: 22px;
+}

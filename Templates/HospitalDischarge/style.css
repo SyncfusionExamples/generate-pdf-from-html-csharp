@@ -1,0 +1,101 @@
+@font-face {
+    font-family: OpenSans;
+    src: url(OpenSans-Regular.ttf);
+}
+
+#footer {
+    font-size: 12px;
+    text-align: right;
+    font-weight: 500;
+    color: white;
+    margin-top: 3.5rem;
+    bottom: 3.5rem;
+    width: 100%;
+    background-color: darkblue;
+    height: 20px;
+}
+
+  .footer-columns {
+    justify-content: space-between;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
+body {
+    position: relative;
+    font-family: OpenSans;
+    font-size: 12px;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    align-content: baseline;
+}
+
+h2 {
+    color: black;
+    text-align: right;
+    font-size: 20px;
+    font-weight: bold;
+    color:white;
+}
+h3 {
+    color: black;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.margins {
+    margin-left: 30px;
+}
+.space{
+    margin-top:15px;
+}
+
+#grid-header {
+    display: grid;
+    grid-template-columns: 50px auto auto;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    background-color: darkblue;
+}
+#grid-body {
+    display: grid;
+    grid-template-columns: 360px auto;
+}
+#grid-items {
+    display: grid;
+    grid-template-columns: 90px 10px auto 120px 10px auto;
+}
+
+.grid-bold {
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.grid-normal {
+    padding: 5px;
+    font-size: 15px;
+}
+.rightview {
+    text-align: right;
+    margin-right:50px;
+    font-size: 15px;
+    font-weight: bold;
+    
+}
+.rightviews {
+    text-align: right;
+    margin-right: 75px;
+    font-size: 15px;
+    font-weight: bold;
+}

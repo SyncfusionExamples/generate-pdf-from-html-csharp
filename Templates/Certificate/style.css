@@ -1,0 +1,106 @@
+body
+{
+  border-style: solid;
+  border-color: rgb(221, 204, 255);
+  border-width: 40px;
+}
+
+@font-face{
+font-family: "Old English Text MT";
+src: url("OLD.ttf") format("truetype");
+}
+
+@font-face{
+font-family: "Calibri";
+src: url("Calibri.ttf") format("truetype");
+}
+
+@font-face{
+font-family: "Script MT Bold";
+src: url("SCRIPTBL.ttf") format("truetype");
+}
+
+.module{
+  border-style: solid;
+  border-color: rgb(153, 0, 255);
+  border-width: 2px;
+  margin: 0 auto;
+  padding-bottom: 70px;
+}
+
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#margin
+{
+margin-top: 30px;
+}
+
+div.a{
+font-family: "Old English Text MT";
+font-size: 35px;
+text-align: center;
+}
+
+div.b{
+  text-align: center;
+}
+
+#award{
+font-family: "Calibri";
+font-size: 20px;
+}
+
+#name{
+font-family: "Script MT Bold";
+font-size: 40px;
+}
+
+#sentence{
+font-family: "Calibri";
+font-size: 20px;
+font-weight: bold;
+font-style: italic;
+}
+
+h4,h1,p{
+margin: 10px;
+}
+
+#greetings1{
+font-family: "Calibri";
+font-size: 20px;
+text-align: center;
+margin-top: 50px;
+}
+
+#greetings2, #cheer{
+font-family: "Calibri";
+font-size: 20px;
+text-align: center;
+}
+
+td {
+  text-align: center;
+}
+
+#left{
+font-family: "Calibri";
+font-size: 20px;
+padding-left: 100;
+}
+
+#date{
+padding-right: 50px;
+text-align: right;
+font-family: "Calibri";
+font-size: 20px;
+}
+
+
+
+

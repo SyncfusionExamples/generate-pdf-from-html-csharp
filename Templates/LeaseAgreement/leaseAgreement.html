@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lease Agreement</title>
+    <link rel="stylesheet" href="style.css" media="all" />
+</head>
+<body>
+    <div class="grid-header">
+        <img class="logo" src="Logo.png" />
+        <h2>{{header_name}}</h2>
+    </div>
+    <h3>This agreement is executed by and between the parties:</h3>
+    <hr size="1" width="100%" color="black">
+    <div class="grid-container">
+        <div class="grid-item1">Lessor/Landlord</div>
+        <div class="grid-item1">Lessee/Tenant</div>
+        <div class="grid-item2">{{parties.lessor}}</div>
+        <div class="grid-item2">{{parties.lessee}}</div>
+        <div class="grid-item1">Property subject to lease</div>
+        <div class="grid-item1">Lease Term</div>
+        <div class="grid-item2">{{parties.subjecttolease}}</div>
+        <div class="grid-item2">{{parties.leaseterm}}</div>
+        <div class="grid-item1">Date payment period on every month</div>
+        <div class="grid-item1"></div>
+        <div class="grid-item2">{{parties.datepaymentperiod}}</div>
+    </div>
+    <h3>Lease Period</h3>
+    <hr size="1" width="100%" color="black">
+    <div class="grid-container">
+        <div class="grid-item1">Lease From</div>
+        <div class="grid-item1">Lease Until</div>
+        <div class="grid-item2">{{lease_period.leasefrom}}</div>
+        <div class="grid-item2">{{lease_period.leaseuntil}}</div>
+        <div class="grid-item1">Security Deposit Amount</div>
+        <div class="grid-item1">Monthly Lease Amount</div>
+        <div class="grid-item2">{{lease_period.securitydepositamount}}</div>
+        <div class="grid-item2">{{lease_period.monthlyleaseamount}}</div>
+    </div>
+    <h3>Names of other occupants</h3>
+    <hr size="1" width="100%" color="black">
+    <div class="grid-container">
+        <div class="grid-item1">Name of other occupant 1</div>
+        <div class="grid-item1">Name of other occupant 2</div>
+        <div class="grid-item2">{{names_occupants.occupant1}}</div>
+        <div class="grid-item2">{{names_occupants.occupant2}}</div>
+        <div class="grid-item1">Relationship</div>
+        <div class="grid-item1">Relationship</div>
+        <div class="grid-item2">{{names_occupants.relationship1}}</div>
+        <div class="grid-item2">{{names_occupants.relationship2}}</div>
+        <div class="grid-item1">Date of Birth</div>
+        <div class="grid-item1">Date of Birth</div>
+        <div class="grid-item2">{{names_occupants.dateofbirth1}}</div>
+        <div class="grid-item2">{{names_occupants.dateofbirth2}}</div>
+        <div><br /></div>
+        <div><br /></div>
+        <div class="grid-item2">{{signature.lessorsignature}}</div>
+        <div class="grid-item2">{{signature.lesseesignature}}</div>
+        <div class="grid-item1">Lessor Signature</div>
+        <div class="grid-item1">Lessee Signature</div>
+    </div><br /><br />
+    <div id="footer">
+        <div class="footer-columns">
+            <p>Page 1 of 2</p>
+        </div>
+    </div><br /><br /><br /><br />
+    <div class="grid-header">
+        <img class="logo" src="Logo.png" />
+        <h2>{{header_name}}</h2>
+    </div>
+    <h4>Terms of Lease</h4>
+    <div class="grid-container">
+        <div class="grid-item1">Use and Occupancy</div>
+        <div class="grid-item1">Assignment and Sublease</div>
+        <div class="grid-item3">{{terms_lease.useandoccupancy}}</div>
+        <div class="grid-item3">{{terms_lease.assignmentandsublease}}</div>
+        <div class="grid-item1">Rent</div>
+        <div class="grid-item1">Abandonment</div>
+        <div class="grid-item3">{{terms_lease.rent}}</div>
+        <div class="grid-item3">{{terms_lease.abandonment}}</div>
+        <div class="grid-item1">Necessary Expenses</div>
+        <div class="grid-item1">Judicial Action</div>
+        <div class="grid-item3">{{terms_lease.necessaryexpenses}}</div>
+        <div class="grid-item3">{{terms_lease.judicialaction}}</div>
+        <div class="grid-item1">Improvements to the Premises</div>
+        <div class="grid-item1">Pets</div>
+        <div class="grid-item3">{{terms_lease.improvementstothepremises}}</div>
+        <div class="grid-item3">{{terms_lease.pets}}</div>
+    </div><br /><br /><br /><br /><br /><br />
+    <div id="footer">
+        <div class="footer-columns">
+            <p>Page 2 of 2</p>
+        </div>
+    </div>
+</body>
+</html>

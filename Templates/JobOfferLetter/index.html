@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>JobOfferLetter</title>
+    <link rel="stylesheet" href="style.css" media="all" />
+</head>
+
+<body>
+    <div class="grid-container ">
+        <img class="logo" src="logo.png" style="width:70px;height:70px;margin-left: 50px;" />
+        <div style="margin-left:70px; margin-top:55px">
+            <b>
+                AMAZE <br />
+                FOX
+            </b>
+        </div>
+        <div style="font-size: 12px; margin-left: 300px; margin-top: 55px">
+            <div><b>{{generate_customer_address.street}} </b></div>
+            <div><b>{{generate_customer_address.city}} </b></div>
+            <div><b>Phone: {{generate_customer_address.phone}} </b></div>
+            <div><b>{{generate_customer_address.website}} </b></div>
+        </div>
+    </div>
+    <br />
+    <div class="body-content" style="margin-left: 50px;">
+        <p><b>Dear John Smith,</b></p>
+        <p>We are pleased to offer you the position of Accountant at Amaze Fox. We feel confident that you will contribute your skills and experience towards the growth of our organization.</p>
+        <p>As per the discussion, your starting date will be {{starting_date}}. Please find the employee handbook enclosed herewith which contains the medical and retirement benefits offered by our organizations.</p>
+        <p>Please confirm your acceptance of this offer by signing and returning a copy of this offer letter.</p>
+        <p>If you have any questions regarding the same, contact the manager or me via email or phone: {{generate_customer_address.phone}}</p>
+        <p>We look forward to welcoming you on board.</p>
+    </div>
+
+    <div class="body-content" style="margin-left: 50px;">
+        <p><b>Sincerely,<br /> {{company_name}} <br />{{person_name}} <br />(Managing Director)</b></p>
+    </div>
+
+    <div id="footer">
+        <div class="footer-columns" style="margin-left: 50px;">
+            <p>AMAZE FOX PVT LTD</p>
+            <p>{{generate_customer_address.website}}</p>
+        </div>
+    </div>
+</body>
+</html>

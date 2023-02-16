@@ -1,0 +1,37 @@
+{
+  "HeaderName": "Patient Medical Record",
+
+  "PatientInformation": {
+    "Name": "John Smith",
+    "Phoneno": "(706) 296-9894",
+    "Birthdate": "February 8th, 1984",
+    "Weight": "68.89",
+    "Height": "162"
+  },
+  "PatientAddress": {
+    "Street": "11815 RollyStreet",
+    "Place": "Atrens, Georgia, 345691",
+    "City": "United States"
+  },
+  "Emergency": {
+    "Fullname": "James K",
+    "Number": "8942-89-2193"
+  },
+  "HospitalAddress": {
+    "Street": "9080 Bolgor,",
+    "Place": "Fosfal road, GA 8989214,",
+    "City": "United States"
+  },
+  "MedicalInformation": {
+    "Clinicorhospital": "Alosius Hospital",
+    "Phoneno": "(1111111) 182182-1212",
+    "Camp": "Yes",
+    "Problems": "Asthma, low BP, diabetes",
+    "Medicalinsurance": "Yes, ITF Co",
+    "Policyno": "8888-9912-12333"
+  },
+  "MedicalAddress": {
+    "Street": "Doe Street, Near ombos, Clifton",
+    "Place": "Road NE, GA 481919"
+  }
+}
