@@ -1,0 +1,97 @@
+﻿@page "/"
+@inject HttpClient Http
+@using System.Text.Json.Nodes
+@using System.Net.Http.Headers
+@using System.Net
+@inject Microsoft.JSInterop.IJSRuntime JS
+
+<div class="accordion">
+    <div class="accordion-item">
+        <h4 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                HTML to PDF
+            </button>
+        </h4>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+
+                <div class="d-flex flex-column" align="center">
+                    <h3>Generate PDF from HTML template</h3>
+                    Dynamically generate PDF documents from HTML template and JSON data.
+                    <div style="padding:20px">
+                        <button type="button" class="btn btn-primary" id="ButtonShow" @onclick="ConvertToPDF"> Convert to PDF </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private async Task ConvertToPDF()
+    {
+        //Create http client to send both files and json data
+        using (var client = new HttpClient())
+        {
+            //Create multipart form data content
+            using (var content = new MultipartFormDataContent())
+            {
+                var html = await Http.GetByteArrayAsync("Invoice/index.html");
+                var css = await Http.GetByteArrayAsync("Invoice/style.css");
+                var data = await Http.GetByteArrayAsync("Invoice/InvoiceData.json");
+                var logo = await Http.GetByteArrayAsync("Invoice/logo.png");
+                var font = await Http.GetByteArrayAsync("Invoice/SourceSansPro-Regular.ttf");
+
+                //Add file to content
+                content.Add(CreateContent("index.html", "index.html", html));
+                content.Add(CreateContent("style.css", "style.css", css));
+                content.Add(CreateContent("data.json", "data.json", data));
+                content.Add(CreateContent("logo.png", "logo.png", logo));
+                content.Add(CreateContent("font.ttf", "font.ttf", font));
+                var json = new JsonObject
+                    {
+                        ["index"] = "index.html",
+                        ["data"] = "data.json",
+                        ["width"] = 0,
+                        ["height"] = 0,
+                        ["margin"] = 40,
+                        ["assets"] = new JsonArray
+              {
+                "style.css",
+                "logo.png",
+                "font.ttf"
+              }
+                    };
+
+
+                //Add json data to content
+                content.Add(new StringContent(json.ToString()), "application/json");
+
+                //Send request to server
+                var response = await client.PostAsync("https://localhost:7045/pdf", content);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var responseContent = await response.Content.ReadAsStreamAsync();
+                    using var Content = new DotNetStreamReference(stream: responseContent);
+                    await JS.InvokeVoidAsync("SubmitHTML", "HTMLToPDF.pdf", Content);
+                }
+
+
+            }
+        }
+
+    }
+
+    private ByteArrayContent CreateContent(string name, string fileName, byte[] fileBytes)
+    {
+        var fileContent = new ByteArrayContent(fileBytes);
+        fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+        fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+            {
+                Name = name,
+                FileName = fileName
+            };
+        return fileContent;
+    }
+}
