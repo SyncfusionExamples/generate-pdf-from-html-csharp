@@ -413,6 +413,9 @@ Once the requested response status code is OK, then invoke the JavaScript (JS) f
 
 ```
 
+While building and running the application, the website will open in your default browser. 
+<img src="Templates/Screenshots/Blazor_UI.png" alt="Invoice HTML Template" width="100%" Height="Auto"/>
+
 ### Launching the Server and Invoking the PDF Generation API from the Client 
 
 Here are the steps to launching the server and invoking the PDF generation API from the client application.  
@@ -420,6 +423,7 @@ Here are the steps to launching the server and invoking the PDF generation API f
 Step 1: Run the Web API application, which will launch the published web API in the browser.   
 
 Step 2: To generate a PDF document using the client application, send an asynchronous POST request to the specified URI (e.g., https://localhost:7094/api/convertToPDF) on the localhost. This will send the request to the server application, which will convert the HTML to PDF and send the response back to the client. After running the client application, click the "Convert to PDF" button, which will initiate the HTML to PDF conversion process and generate a PDF document named "HTMLToPDF.pdf" in the designated folder.  
+<img src="Templates/Screenshots/Blazor_UI.png" alt="Invoice HTML Template" width="100%" Height="Auto"/>
 
 Upon successful conversion, you will receive a PDF document as illustrated in the following screenshot.  
 <img src="Templates/Screenshots/Output.jpg" alt="Invoice HTML Template" width="100%" Height="Auto"/>
@@ -435,4 +439,25 @@ Template Name | HTML Template | Description
 [HospitalDischarge](https://github.com/SyncfusionExamples/generate-pdf-from-html-csharp/tree/master/Templates/HospitalDischarge) |  <img src="Templates/Screenshots/HospitalDischarge.jpg" alt="Certificate of appreciation HTML Template" width="100%" Height="Auto"/> | This hospital discharge template captures the medical information related to patient during the stay in the hospital.
 [JobOfferLetter](https://github.com/SyncfusionExamples/generate-pdf-from-html-csharp/tree/master/Templates/JobOfferLetter) | <img src="Templates/Screenshots/JobOfferLetter.png" alt="JobOfferLetter HTML Template" width="100%" Height="Auto"/> | Job offer letter refers to an official document employer gives to an employee in order to provide them with an offer of employment.
 [PatientMedicalRecord](https://github.com/SyncfusionExamples/generate-pdf-from-html-csharp/tree/master/Templates/PatientMedicalRecord) | <img src="Templates/Screenshots/MedicalRecord.png" alt="JobOfferLetter HTML Template" width="100%" Height="Auto"/> | The patient medical records are used to describe the systematic documentation of a single patient's medical history.
+
+# Resources
+*   **Product page:** [Syncfusion PDF Framework](https://www.syncfusion.com/document-processing/pdf-framework/net)
+*   **Documentation page:** [Syncfusion .NET PDF library](https://help.syncfusion.com/file-formats/pdf/overview)
+*   **Online demo:** [Syncfusion .NET PDF library - Online demos](https://ej2.syncfusion.com/aspnetcore/PDF/CompressExistingPDF#/bootstrap5)
+*   **Blog:** [Syncfusion .NET PDF library - Blog](https://www.syncfusion.com/blogs/category/pdf)
+*   **Knowledge Base:** [Syncfusion .NET PDF library - Knowledge Base](https://www.syncfusion.com/kb/windowsforms/pdf)
+*   **EBooks:** [Syncfusion .NET PDF library - EBooks](https://www.syncfusion.com/succinctly-free-ebooks)
+*   **FAQ:** [Syncfusion .NET PDF library - FAQ](https://www.syncfusion.com/faq/)
+
+# Support and feedback
+*   For any other queries, reach our [Syncfusion support team](https://www.syncfusion.com/support/directtrac/incidents/newincident?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples) or post the queries through the [community forums](https://www.syncfusion.com/forums?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples).
+*   Request new feature through [Syncfusion feedback portal](https://www.syncfusion.com/feedback?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples).
+
+# License
+This is a commercial product and requires a paid license for possession or use. Syncfusion’s licensed software, including this component, is subject to the terms and conditions of [Syncfusion's EULA](https://www.syncfusion.com/eula/es/?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples). You can purchase a licnense [here](https://www.syncfusion.com/sales/products?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples) or start a free 30-day trial [here](https://www.syncfusion.com/account/manage-trials/start-trials?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples).
+
+# About Syncfusion
+Founded in 2001 and headquartered in Research Triangle Park, N.C., Syncfusion has more than 26,000+ customers and more than 1 million users, including large financial institutions, Fortune 500 companies, and global IT consultancies.
+
+Today, we provide 1600+ components and frameworks for web ([Blazor](https://www.syncfusion.com/blazor-components?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples), [ASP.NET Core](https://www.syncfusion.com/aspnet-core-ui-controls?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples), [ASP.NET MVC](https://www.syncfusion.com/aspnet-mvc-ui-controls?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples), [ASP.NET WebForms](https://www.syncfusion.com/jquery/aspnet-webforms-ui-controls?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples), [JavaScript](https://www.syncfusion.com/javascript-ui-controls?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples), [Angular](https://www.syncfusion.com/angular-ui-components?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples), [React](https://www.syncfusion.com/react-ui-components?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples), [Vue](https://www.syncfusion.com/vue-ui-components?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples), and [Flutter](https://www.syncfusion.com/flutter-widgets?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples)), mobile ([Xamarin](https://www.syncfusion.com/xamarin-ui-controls?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples), [Flutter](https://www.syncfusion.com/flutter-widgets?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples), [UWP](https://www.syncfusion.com/uwp-ui-controls?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples), and [JavaScript](https://www.syncfusion.com/javascript-ui-controls?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples)), and desktop development ([WinForms](https://www.syncfusion.com/winforms-ui-controls?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples), [WPF](https://www.syncfusion.com/wpf-ui-controls?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples), [WinUI(Preview)](https://www.syncfusion.com/winui-controls?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples), [Flutter](https://www.syncfusion.com/flutter-widgets?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples) and [UWP](https://www.syncfusion.com/uwp-ui-controls?utm_source=github&utm_medium=listing&utm_campaign=github-docio-examples)). We provide ready-to-deploy enterprise software for dashboards, reports, data integration, and big data processing. Many customers have saved millions in licensing fees by deploying our software.
 
