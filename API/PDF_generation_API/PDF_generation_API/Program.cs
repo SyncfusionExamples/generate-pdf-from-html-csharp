@@ -3,6 +3,20 @@ using PDF_generation_API;
 using System.Dynamic;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBlazorClient",
+          builder =>
+          {
+              builder.WithOrigins("https://localhost:7270/")//Blazor app URL
+              .SetIsOriginAllowed((host) => true)
+                     .AllowAnyHeader()
+                     .AllowAnyMethod()
+              .AllowCredentials();
+          });
+});
+
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
@@ -39,6 +53,8 @@ app.MapPost("/pdf", async (HttpContext context) =>
     }
 });
 
+app.UseCors("AllowBlazorClient");
+
 app.Run();
 
 void CopyAssets(List<string> assets, IFormFileCollection files)
@@ -52,6 +68,9 @@ void CopyAssets(List<string> assets, IFormFileCollection files)
             file.Delete();
         }
     }
+    else
+        Directory.CreateDirectory("template/");
+
     var formFiles = files.ToList();
     foreach (var asset in assets)
     {
