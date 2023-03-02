@@ -21,7 +21,7 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
-app.MapPost("/pdf", async (HttpContext context) =>
+app.MapPost("/api/convertToPDF", async (HttpContext context) =>
 {
     try
     {

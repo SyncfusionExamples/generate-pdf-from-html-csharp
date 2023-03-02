@@ -1,22 +1,22 @@
 # Generate PDF documents from dynamic HTML using Syncfusion PDF generator API 
 
-This repository explains how to generate PDFs from dynamic HTML using the Syncfusion PDF generator API. Design your document using HTML and CSS, then utilize the Web API to create the PDF."
+The [Syncfusion HTML-to-PDF converter library](https://www.syncfusion.com/document-processing/pdf-framework/net/html-to-pdf) in combination with [ASP.NET Core Minimal Web API](https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-7.0&tabs=visual-studio) offers a simple and straightforward approach for dynamically generating PDFs from HTML templates. 
 
-## Syncfusion PDF generator API 
+In this repository, we will learn how to create an ASP.NET Core Minimal Web API that dynamically generates a PDF document from an HTML template using Syncfusion HTML-to-PDF converter library.  
 
-The Syncfusion PDF generator API enables quick and easy creation of new PDF documents from dynamic HTML files. This Web API supports all HTML structures and customization options.
+## Steps to create PDF invoice from HTML template using ASP.NET Core Minimal Web API
+1. Create HTML template with CSS styling 
+2. Create a minimal Web API project with ASP.NET Core (Server application)  
+3. Create Blazor WASM with .NET 7 (Client application)  
+4. Launching the Server and Invoking the Web API from the Client  
 
-## Steps to create HTML invoice and conveter to a PDF document using WebAPI
-1. Create HTML template 
-2. CSS Styling 
-3. Utilize Syncfusion Web API Calls 
-4. Add HTML File
-5. Add Additional Assets (ie., fonts, images, etc)
-6. Start the server and invoke the API from Client 
+### Create HTML template with CSS styling 
 
-### Create an HTML Template 
+In HTML file, define the structure of your page, including the head and body sections, any other elements you'd like to include, such as image, header, footer, etc.  
 
-An HTML template features {{mustache}} syntax placeholders for data binding. For this illustration, we'll employ the [Scriban scripting language](https://github.com/scriban/scriban) to establish these placeholders. Scriban is a lightweight .NET scripting language and engine. The following HTML template (index.html) displays the invoice number, company information, and supplementary data, incorporating inline CSS for styling. 
+Also, it contains placeholders with {{mustache}} syntax and it is used to bind the actual data to the HTML template. For this example, we'll use the [Scriban scripting language](https://github.com/scriban/scriban) to create the placeholders. It's a lightweight scripting language and engine for .NET. 
+
+N> To learn more about the Scriban scripting language, refer to the [documentation](https://github.com/scriban/scriban/tree/master/doc).
 
 **index.html**
 ```html
@@ -28,65 +28,93 @@ An HTML template features {{mustache}} syntax placeholders for data binding. For
     <link rel="stylesheet" href="style.css" media="all" />
   </head>
   <body>
-      <div class="grid-container">
-          <div>
-              <img src="C:\Users\JeyalakshmiThangamar\Downloads\HtmlToPdfApiTest\HtmlToPdfApiTest\Template\logo.png" style="height: 70px;">
-          </div>
-          <div style="margin-left:30px; margin-top:20px"><b>{{company_details.name}}</b></div>
+    <header class="clearfix">
+      <div id="logo">
+        <img src="logo.png">
       </div>
-      <div style="text-align:right;margin-right:10px; margin-top:15px"><b>Invoice No.#23698720</b></div>
-      <br />
-      <main>
-          <table border="0" cellspacing="0" cellpadding="0">
-              <thead>
-                  <tr>
-                      <th class="no">#</th>
-                      <th class="desc">DESCRIPTION</th>
-                      <th class="unit">UNIT PRICE</th>
-                      <th class="qty">QUANTITY</th>
-                      <th class="total">TOTAL</th>
-                  </tr>
-              </thead>
-              <tbody id="invoiceItems">
-                  {{- index = 1 -}}
-                  {{ for item in items }}
-                  <tr>
-                      <td class="no">{{index}}</td>
-                      <td class="desc"><h3>{{item.name}}</h3>{{item.description}}</td>
-                      <td class="unit">${{item.price}}</td>
-                      <td class="qty">{{item.quantity}}</td>
-                      <td class="total">${{item.total_price}}</td>
-                  </tr>
-                  {{index = index + 1}}
-                  {{end}}
-              </tbody>
-              <tfoot>
-                  <tr>
-                      <td colspan="2"></td>
-                      <td colspan="2">SUBTOTAL</td>
-                      <td>${{sub_total}}</td>
-                  </tr>
-                  <tr>
-                      <td colspan="2"></td>
-                      <td colspan="2">TAX 25%</td>
-                      <td>${{tax}}</td>
-                  </tr>
-                  <tr>
-                      <td colspan="2"></td>
-                      <td colspan="2">GRAND TOTAL</td>
-                      <td>${{grand_total}}</td>
-                  </tr>
-              </tfoot>
-          </table>
-      </main>
+      <div id="company">
+        <h2 class="name">{{invoice.company_details.name}}</h2>
+        <div>{{invoice.company_details.address}}</div>
+        <div>{{invoice.company_details.phone}}</div>
+        <div>{{invoice.company_details.email}}</div>
+      </div>
+      </div>
+    </header>
+    <main>
+      <div id="details" class="clearfix">
+        <div id="client">
+          <div class="to">INVOICE TO:</div>
+          <h2 class="name">{{invoice.customer_details.name}}</h2>
+          <div class="address">{{invoice.customer_details.address}}</div>
+          <div class="email">{{invoice.customer_details.email}}</div>
+        </div>
+        <div id="invoice">
+          <h1>{{invoice.invoice_number}}</h1>
+          <div class="date">Date of Invoice: {{invoice.issue_date}}</div>
+          <div class="date">Due Date: {{invoice.due_date}}</div>
+        </div>
+      </div>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th class="no">#</th>
+            <th class="desc">DESCRIPTION</th>
+            <th class="unit">UNIT PRICE</th>
+            <th class="qty">QUANTITY</th>
+            <th class="total">TOTAL</th>
+          </tr>
+        </thead>
+        <tbody id="invoiceItems">
+		{{- index = 1 -}}
+		 {{ for item in invoice.items }}
+          <tr>
+            <td class="no">{{index}}</td>
+            <td class="desc"><h3>{{item.name}}</h3>{{item.description}}</td>
+            <td class="unit">${{item.price}}</td>
+            <td class="qty">{{item.quantity}}</td>
+            <td class="total">${{item.total_price}}</td>
+          </tr>
+		  {{index = index + 1}}
+		  {{end}}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">SUBTOTAL</td>
+            <td>${{invoice.sub_total}}</td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">TAX 25%</td>
+            <td>${{invoice.tax}}</td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">GRAND TOTAL</td>
+            <td>${{invoice.grand_total}}</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div id="thanks">Thank you!</div>
+      <div id="notices">
+        <div>NOTICE:</div>
+        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+      </div>
+    </main>
   </body>
 </html>
 
 ```
 
-### CSS Styling 
+By default, the properties and methods of .NET objects are automatically exposed with lowercase and _ names. This means that a property like CompanyDetails.Name will be exposed as company_details.name and while performing the conversion, the values can be imported from respective JSON file. 
 
-The Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a HTML document. In this instance, we have designated the heading as bold, added custom font text, inserted a logo, and styled the table."
+<img src="Templates/Screenshots/JSON_data.png" alt="Invoice HTML Template" width="100%" Height="Auto"/>
+
+#### CSS Styling
+
+Create CSS file to control the appearance of your HTML template. In this CSS file, you'll define styles for your page elements, such as font sizes, colors, and images.   
+
+You can get this HTML template with CSS and fonts from this [location](Templates/Invoice/).  
 
 **style.css**
 ```css
@@ -177,95 +205,224 @@ table tfoot tr td:first-child {
 ``` 
 
 The following screenshot shows the output of the HTML template with styled CSS.
-<img src="Templates/Screenshots/invoiceHTMLTemplate.png" alt="Invoice HTML Template" width="100%" Height="Auto"/>
+<img src="Templates/Screenshots/HTML template.png" alt="Invoice HTML Template" width="100%" Height="Auto"/>
 
-### Utilize Syncfusion Web API Calls 
+Furthermore, any additional resources such as fonts, images, JSON files, etc. should be located in the same folder as the HTML file. Please refer to the screenshot below for visual reference. 
+<img src="Templates/Screenshots/Folder_structure.png" alt="Invoice HTML Template" width="100%" Height="Auto"/>
+
+### Create a minimal Web API project with ASP.NET Core 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core. Kindly refer the below link to create the project in Visual Studio 2022. 
 [Steps to create minimal API project with ASP.NET Core 7.0](https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-7.0&tabs=visual-studio)
 
-In this approach, the [StreamReader](https://learn.microsoft.com/en-us/dotnet/api/system.io.streamreader?view=net-7.0) class to convert the provided HTML and JSON files to text based on the client's request. Then, we integrate the HTML text along with the necessary assets to generate the final PDF document.
-
+Within this Web API application, the [Program.cs](API/PDF_generation_API/PDF_generation_API/Program.cs) file employs the [StreamReader](https://learn.microsoft.com/en-us/dotnet/api/system.io.streamreader?view=net-7.0) class to transform the HTML and JSON files, supplied by the client's request, into textual format. Subsequently, combining the HTML text with the required assets via the CopyAssets() method. 
 
 ```csharp
 
-var html = await context.Request.ReadFormAsync();
-var value = html.AsQueryable().ToList().Where(x => x.Key == "application/json").FirstOrDefault().Value.ToString();
-var options = JsonConvert.DeserializeObject<ConversionOptions>(value);
-
-string htmlText = "";
-string jsonData = "";
-if (options != null)
+app.MapPost("/api/convertToPDF", async (HttpContext context) =>
 {
-  htmlText = ReadText(html.Files[options.Index].OpenReadStream());
-  jsonData = ReadText(html.Files[options.Data].OpenReadStream());
-  CopyAssets(options.Assets, html.Files);
-}
+    try
+    {
+        var html = await context.Request.ReadFormAsync();
+        var value = html.AsQueryable().ToList().Where(x => x.Key == "application/json").FirstOrDefault().Value.ToString();
+        var options = JsonConvert.DeserializeObject<ConversionOptions>(value);
 
-String path = Path.GetFullPath("template/");
-var conversion = new HtmlToPdfConversion();
-var pdf = conversion.ConvertToPDF(htmlText, path, jsonData, options);
-context.Response.ContentType = "application/pdf";
-await context.Response.Body.WriteAsync(pdf);
+        string htmlText = "";
+        string jsonData = "";
+        if (options != null)
+        {
+            htmlText = ReadText(html.Files[options.Index].OpenReadStream());
+            jsonData = ReadText(html.Files[options.Data].OpenReadStream());
+            CopyAssets(options.Assets, html.Files);
+        }
+
+
+        String path = Path.GetFullPath("template/");
+
+        var conversion = new HtmlToPdfConversion();
+        var pdf = conversion.ConvertToPDF(htmlText, path, jsonData, options);
+
+        context.Response.ContentType = "application/pdf";
+        await context.Response.Body.WriteAsync(pdf);
+    }
+    catch (Exception exception)
+    {
+
+    }
+});
+
+app.UseCors("AllowBlazorClient");
+app.Run();
+
+void CopyAssets(List<string> assets, IFormFileCollection files)
+{
+    if (Directory.Exists("template/"))
+    {
+        System.IO.DirectoryInfo di = new DirectoryInfo("template/");
+
+        foreach (FileInfo file in di.GetFiles())
+        {
+            file.Delete();
+        }
+    }
+    else
+        Directory.CreateDirectory("template/");
+
+    var formFiles = files.ToList();
+    foreach (var asset in assets)
+    {
+        Stream stream = formFiles.FirstOrDefault(x => x.FileName == asset).OpenReadStream();
+        if (stream != null)
+        {
+            var fileStream = new FileStream("template/" + asset, FileMode.Create);
+            stream.CopyTo(fileStream);
+            fileStream.Close();
+            stream.Close();
+        }
+    }
+}
+string ReadText(Stream strem)
+{
+    StreamReader reader = new StreamReader(strem);
+    string text = reader.ReadToEnd();
+    reader.Close();
+    strem.Dispose();
+
+    return text;
+}
 
 ```
 
-
-### Call Web API from C# console application 
-The client application in this implementation is a .NET Console application built with .NET version 7. To create a new .NET console application using Visual Studio 2022, please follow the guidance provided in [this](https://learn.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio?pivots=dotnet-7-0) link. Within the application, we utilize the **RestClient** from the [RestSharp](https://www.nuget.org/packages/RestSharp) NuGet package to set the server IP address.  
+Next, the [HtmlToPdfConverter](https://help.syncfusion.com/cr/file-formats/Syncfusion.HtmlConverter.HtmlToPdfConverter.html) is utilized to turn the HTML string, accompanied by the assets, into a PDF document via the blink rendering engine within the [HtmlToPdfConversion.cs](API/PDF_generation_API/PDF_generation_API/HtmlToPdfConversion.cs) file. During this conversion, we have established the size and margin of the PDF page and the viewport size using the [BlinkConverterSettings](https://help.syncfusion.com/cr/file-formats/Syncfusion.HtmlConverter.BlinkConverterSettings.html) class. Please refer to the accompanying code example for further information.  
 
 ```csharp
-var client = new RestClient("https://localhost:7094/pdf"); 
+
+var expando = JsonConvert.DeserializeObject<ExpandoObject>(modelData);
+var sObject = BuildScriptObject(expando);
+var templateCtx = new Scriban.TemplateContext();
+templateCtx.PushGlobal(sObject);
+var template = Scriban.Template.Parse(pageContent);
+var result = template.Render(templateCtx);
+
+//Initialize HTML to PDF converter with Blink rendering engine
+HtmlToPdfConverter htmlConverter = new HtmlToPdfConverter(HtmlRenderingEngine.Blink);
+BlinkConverterSettings blinkConverterSettings = new BlinkConverterSettings();
+if (options.Width != 0 && options.Height != 0)
+{
+    blinkConverterSettings.PdfPageSize = new Syncfusion.Drawing.SizeF(options.Width, options.Height);
+}
+else
+{
+    blinkConverterSettings.ViewPortSize= new Syncfusion.Drawing.Size(595, 842);
+}
+blinkConverterSettings.Margin = new PdfMargins() { All = options.Margin };
+htmlConverter.ConverterSettings = blinkConverterSettings;
+//Convert HTML string to PDF
+PdfDocument document = htmlConverter.Convert(result, path);
+
+//Save and close the PDF document 
+MemoryStream output = new MemoryStream();
+document.Save(output);
+document.Close(true);
+
 ```
 
-#### Incorporating HTML files and additional assets
-The inclusion of the HTML and CSS files in the **RestRequest** is necessary. Additionally, any supplementary assets such as fonts, images, and PDF size specifications should be sent along with the request, with the **assets** key of the HTML serving as the designated location.
+### Create Blazor WASM application (client)  
 
-``Assets passed in the request must match the name used to reference in the file.``
+The client application in this implementation is a Blazor WASM application built with .NET version 7.0. To create a new ASP.NET Core Blazor WebAssembly application using Visual Studio 2022, please follow the guidance provided in [this](https://help.syncfusion.com/file-formats/pdf/create-pdf-document-in-blazor#steps-to-create-pdf-document-in-blazor-client-side-application) link. Within the application, we utilize the *HttpClient.PostAsync* method to send a POST request to the specified URI as an asynchronous operation.
 
 ```csharp
 
-var request = new RestRequest().AddFile("index.html", "Template/index.html")
- .AddFile("style.css", "Template/style.css").AddFile("data.json", "Template/InvoiceData.json").AddFile("logo.png", "/logo.png").AddFile("SourceSansPro-Regular.ttf", "Template/SourceSansPro-Regular.ttf");
-request.Method = Method.Post; 
-var json = new JsonObject
+//Send request to server 
+var response = await client.PostAsync("https://localhost:7045/api/convertToPDF", content); 
+
+```
+
+#### Incorporating HTML files and additional assets 
+
+The inclusion of the HTML and CSS files in the HttpClient is necessary. Additionally, any supplementary assets such as fonts, images, and PDF size specifications should be sent along with the request using the *MultipartFormDataContent*.  
+
+```csharp
+
+private async Task ConvertToPDF()
 {
-    ["index"] = "index.html",
-    ["data"] = "data.json",
-    ["width"] = 595,
-    ["height"] = 842,
-    ["margin"] = 0,
-    ["assets"] = new JsonArray
- {
- "style.css",
- "SourceSansPro-Regular.ttf",
- "logo.png"
- }
-}; 
-request.AddParameter("application/json", json.ToString(), ParameterType.RequestBody); 
-var response = await client.ExecuteAsync(request);
-if (response.StatusCode == System.Net.HttpStatusCode.OK)
-{
-    System.IO.File.WriteAllBytes("Result.pdf", response.RawBytes);
-    
+    //Create http client to send both files and json data
+    using (var client = new HttpClient())
+    {
+            //Create multipart form data content
+            using (var content = new MultipartFormDataContent())
+            {
+                var html = await Http.GetByteArrayAsync("Invoice/index.html");
+                var css = await Http.GetByteArrayAsync("Invoice/style.css");
+                var data = await Http.GetByteArrayAsync("Invoice/InvoiceData.json");
+                var logo = await Http.GetByteArrayAsync("Invoice/logo.png");
+                var font = await Http.GetByteArrayAsync("Invoice/SourceSansPro-Regular.ttf");
+
+                //Add file to content
+                content.Add(CreateContent("index.html", "index.html", html));
+                content.Add(CreateContent("style.css", "style.css", css));
+                content.Add(CreateContent("data.json", "data.json", data));
+                content.Add(CreateContent("logo.png", "logo.png", logo));
+                content.Add(CreateContent("font.ttf", "font.ttf", font));
+                var json = new JsonObject
+                {
+                        ["index"] = "index.html",
+                        ["data"] = "data.json",
+                        ["width"] = 0,
+                        ["height"] = 0,
+                        ["margin"] = 40,
+                        ["assets"] = new JsonArray
+                        {
+                          "style.css",
+                          "logo.png",
+                          "font.ttf"
+                        }
+                };
+                //Add json data to content
+                content.Add(new StringContent(json.ToString()), "application/json");
+                //Send request to server
+                var response = await client.PostAsync("https://localhost:7045/api/convertToPDF", content);
+                if (response.StatusCode == HttpStatusCode.OK)
+               {
+                var responseContent = await response.Content.ReadAsStreamAsync();
+                using var Content = new DotNetStreamReference(stream: responseContent);
+                await JS.InvokeVoidAsync("SubmitHTML", "HTMLToPDF.pdf", Content);
+               }
+        }
+    }
 }
 
-``` 
+```
 
-### Steps to start the server and invoking the Web API from Client 
+Once the requested response status code is OK, then invoke the JavaScript (JS) function in index.html file to save the PDF document.  
 
-Step 1: Download both the server and client application. 
+```html
 
-Step 2: Open the solution files of both projects using Visual Studio. 
+<script>
+    window.SubmitHTML = async (fileName, contentStreamReference) => {
+        const arrayBuffer = await contentStreamReference.arrayBuffer();
+        const blob = new Blob([arrayBuffer]);
+        const url = URL.createObjectURL(blob);
+        const anchorElement = document.createElement('a');
+        anchorElement.href = url;
+        anchorElement.download = fileName ?? '';
+        anchorElement.click();
+        anchorElement.remove();
+        URL.revokeObjectURL(url);
+    }
+</script>
 
-Step 3: Rebuild the solution to install the required NuGet package. 
+```
 
-Step 4: First run the Web API application (PDF_from_HTML_API), which will lauch the published website in the browser. 
-<img src="Templates/Screenshots/Server_web.png" alt="Invoice HTML Template" width="100%" Height="Auto"/>
+### Launching the Server and Invoking the PDF Generation API from the Client 
 
-Step 5: Take the localhost path (i.e., https://localhost:7094/pdf) and insert it into the RestClient constructor of the client application. Upon running the client application, this will result in the generation of a PDF document (Result.pdf) within the designated folder (bin/debug/net7.0/).
+Here are the steps to launching the server and invoking the PDF generation API from the client application.  
+
+Step 1: Run the Web API application, which will launch the published web API in the browser.   
+
+Step 2: To generate a PDF document using the client application, send an asynchronous POST request to the specified URI (e.g., https://localhost:7094/api/convertToPDF) on the localhost. This will send the request to the server application, which will convert the HTML to PDF and send the response back to the client. After running the client application, click the "Convert to PDF" button, which will initiate the HTML to PDF conversion process and generate a PDF document named "HTMLToPDF.pdf" in the designated folder.  
 
 Upon successful conversion, you will receive a PDF document as illustrated in the following screenshot.  
-<img src="Templates/Screenshots/Output.png" alt="Invoice HTML Template" width="100%" Height="Auto"/>
+<img src="Templates/Screenshots/Output.jpg" alt="Invoice HTML Template" width="100%" Height="Auto"/>
 
 ## Sample Templates 
 
