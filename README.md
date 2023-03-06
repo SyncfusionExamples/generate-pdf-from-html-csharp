@@ -4,7 +4,7 @@ The [Syncfusion HTML-to-PDF converter library](https://www.syncfusion.com/docume
 
 In this repository, we will learn how to create an ASP.NET Core Minimal Web API that dynamically generates a PDF document from an HTML template using Syncfusion HTML-to-PDF converter library.  
 
-## Steps to create PDF invoice from HTML template using ASP.NET Core Minimal Web API
+## Steps to create job offer letter from HTML template using ASP.NET Core Minimal Web API
 1. Create HTML template with CSS styling 
 2. Create a minimal Web API project with ASP.NET Core (Server application)  
 3. Create Blazor WASM with .NET 7 (Client application)  
