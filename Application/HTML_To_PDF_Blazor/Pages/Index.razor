@@ -36,31 +36,31 @@
                 //Create multipart form data content
                 using (var content = new MultipartFormDataContent())
                 {
-                    var html = await Http.GetByteArrayAsync("Invoice/index.html");
-                    var css = await Http.GetByteArrayAsync("Invoice/style.css");
-                    var data = await Http.GetByteArrayAsync("Invoice/InvoiceData.json");
-                    var logo = await Http.GetByteArrayAsync("Invoice/logo.png");
-                    var font = await Http.GetByteArrayAsync("Invoice/SourceSansPro-Regular.ttf");
+                    var html = await Http.GetByteArrayAsync("JobOfferLetter/index.html");
+                    var css = await Http.GetByteArrayAsync("JobOfferLetter/style.css");
+                    var data = await Http.GetByteArrayAsync("JobOfferLetter/Data.json");
+                    var logo = await Http.GetByteArrayAsync("JobOfferLetter/logo.png");
+                var font = await Http.GetByteArrayAsync("JobOfferLetter/OpenSans-Regular.ttf");
 
-                    //Add file to content
-                    content.Add(CreateContent("index.html", "index.html", html));
+                //Add file to content
+                content.Add(CreateContent("index.html", "index.html", html));
                     content.Add(CreateContent("style.css", "style.css", css));
-                    content.Add(CreateContent("data.json", "data.json", data));
+                content.Add(CreateContent("Data.json", "Data.json", data));
                     content.Add(CreateContent("logo.png", "logo.png", logo));
-                    content.Add(CreateContent("font.ttf", "font.ttf", font));
+                content.Add(CreateContent("OpenSans-Regular.ttf", "OpenSans-Regular.ttf", font));
                     var json = new JsonObject
                         {
                             ["index"] = "index.html",
-                            ["data"] = "data.json",
+                            ["data"] = "Data.json",
                             ["width"] = 0,
                             ["height"] = 0,
-                            ["margin"] = 40,
+                            ["margin"] = 0,
                             ["assets"] = new JsonArray
-                  {
-                    "style.css",
-                    "logo.png",
-                    "font.ttf"
-                  }
+                            {
+                              "style.css",
+                              "logo.png",
+                              "OpenSans-Regular.ttf"
+                            }
                         };
 
 

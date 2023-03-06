@@ -41,11 +41,11 @@ app.MapPost("/api/convertToPDF", async (HttpContext context) =>
 
         String path = Path.GetFullPath("template/");
 
-        var conversion = new HtmlToPdfConversion();
-        var pdf = conversion.ConvertToPDF(htmlText, path, jsonData, options);
+        var converter = new HtmlToPdfConversion();
+        var pdfDocument = converter.ConvertToPDF(htmlText, path, jsonData, options);
 
         context.Response.ContentType = "application/pdf";
-        await context.Response.Body.WriteAsync(pdf);
+        await context.Response.Body.WriteAsync(pdfDocument);
     }
     catch (Exception exception)
     {
