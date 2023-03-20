@@ -38,30 +38,30 @@ N> To learn more about the Scriban scripting language, refer to the [documentati
             </b>
         </div>
         <div style="font-size: 12px; margin-left: 300px; margin-top: 55px">
-            <div><b>{{generate_customer_address.street}} </b></div>
-            <div><b>{{generate_customer_address.city}} </b></div>
-            <div><b>Phone: {{generate_customer_address.phone}} </b></div>
-            <div><b>{{generate_customer_address.website}} </b></div>
+            <div><b>{{company_details.street}} </b></div>
+            <div><b>{{company_details.city}} </b></div>
+            <div><b>Phone: {{company_details.phone}} </b></div>
+            <div><b>{{company_details.website}} </b></div>
         </div>
     </div>
     <br />
     <div class="body-content" style="margin-left: 50px;">
-        <p><b>Dear John Smith,</b></p>
-        <p>We are pleased to offer you the position of Accountant at Amaze Fox. We feel confident that you will contribute your skills and experience towards the growth of our organization.</p>
-        <p>As per the discussion, your starting date will be {{starting_date}}. Please find the employee handbook enclosed herewith which contains the medical and retirement benefits offered by our organizations.</p>
+        <p><b>Dear {{employee_details.name}},</b></p>
+        <p>We are pleased to offer you the position of Accountant at {{company_details.company_name}}. We feel confident that you will contribute your skills and experience towards the growth of our organization.</p>
+        <p>As per the discussion, your starting date will be {{employee_details.joining_date}}. Please find the employee handbook enclosed herewith which contains the medical and retirement benefits offered by our organizations.</p>
         <p>Please confirm your acceptance of this offer by signing and returning a copy of this offer letter.</p>
-        <p>If you have any questions regarding the same, contact the manager or me via email or phone: {{generate_customer_address.phone}}</p>
+        <p>If you have any questions regarding the same, contact the manager or me via email or phone: {{company_details.phone}}</p>
         <p>We look forward to welcoming you on board.</p>
     </div>
 
     <div class="body-content" style="margin-left: 50px;">
-        <p><b>Sincerely,<br /> {{company_name}} <br />{{person_name}} <br />(Managing Director)</b></p>
+        <p><b>Sincerely,<br /> {{company_details.company_name}} <br />{{company_details.employer_name}} <br />(Managing Director)</b></p>
     </div>
 
     <div id="footer">
         <div class="footer-columns" style="margin-left: 50px;">
-            <p>AMAZE FOX PVT LTD</p>
-            <p>{{generate_customer_address.website}}</p>
+            <p>{{company_details.company_name}}</p>
+            <p>{{company_details.website}}</p>
         </div>
     </div>
 </body>
@@ -233,7 +233,7 @@ var template = Scriban.Template.Parse(pageContent);
 var result = template.Render(templateCtx);
 
 //Initialize HTML to PDF converter with Blink rendering engine
-HtmlToPdfConverter htmlConverter = new HtmlToPdfConverter(HtmlRenderingEngine.Blink);
+HtmlToPdfConverter htmlConverter = new HtmlToPdfConverter();
 BlinkConverterSettings blinkConverterSettings = new BlinkConverterSettings();
 if (options.Width != 0 && options.Height != 0)
 {

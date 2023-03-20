@@ -22,7 +22,7 @@ namespace PDF_generation_API
 
 
             //Initialize HTML to PDF converter with Blink rendering engine
-            HtmlToPdfConverter htmlConverter = new HtmlToPdfConverter(HtmlRenderingEngine.Blink);
+            HtmlToPdfConverter htmlConverter = new HtmlToPdfConverter();
             BlinkConverterSettings blinkConverterSettings = new BlinkConverterSettings();
             if (options.Width != 0 && options.Height != 0)
             {
