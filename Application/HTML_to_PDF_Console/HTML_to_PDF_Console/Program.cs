@@ -1,7 +1,7 @@
 ﻿using RestSharp;
 using System.Text.Json.Nodes;
 
-var client = new RestClient("https://localhost:7045/pdf");
+var client = new RestClient("https://localhost:7045/api/convertToPDF");
 
 string path = Path.GetFullPath("../../../../../../Templates/BoardingPass/");
 
